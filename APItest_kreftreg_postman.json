@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "a84d4589-e379-4cd7-a369-a33df0cc75b3",
+		"name": "APItest_kodeoppgave_kreftregisteret",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01_ListAllUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": "List all users\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "02_ListAllUsersWithValidUserRole",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users?validUserRole=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "validUserRole",
+							"value": "true"
+						}
+					]
+				},
+				"description": "List all user which at some time has hade a valid user role"
+			},
+			"response": []
+		},
+		{
+			"name": "03_ListAllUnits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/units",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"units"
+					]
+				},
+				"description": "List all units "
+			},
+			"response": []
+		},
+		{
+			"name": "04_ListAllRoles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/roles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"roles"
+					]
+				},
+				"description": "List all roles"
+			},
+			"response": []
+		},
+		{
+			"name": "05_ListAllUserRolesForAGivenUserIdAndUnitId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/userRoles?userId=1&unitId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"userRoles"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "unitId",
+							"value": "1"
+						}
+					]
+				},
+				"description": "List all user roles (both currently valid and invalid) for a given user id and unit id. Parameter: 'userId' and 'unitId'"
+			},
+			"response": []
+		},
+		{
+			"name": "06_ListAllValidUserRolesForAGivenUserIdAndUnitIdAndTimeStamp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/userRoles?userId=1&unitId=1&timeStamp=2019-02-02T00:00:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"userRoles"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "unitId",
+							"value": "1"
+						},
+						{
+							"key": "timeStamp",
+							"value": "2019-02-02T00:00:00"
+						}
+					]
+				},
+				"description": "List only valid user roles for a given user id and unit id at a given timestamp.\r\nParameters: 'userId', 'unitId' and 'timeStamp'"
+			},
+			"response": []
+		},
+		{
+			"name": "07_CreateNewUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 8,\r\n\t\"version\": \"3\",\r\n\t\"name\": \"Ronny\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Create new user. Json body with key 'name' is needed "
+			},
+			"response": []
+		},
+		{
+			"name": "08_UpdateUser",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 4,\r\n\t\"version\": \"2\",\r\n\t\"name\": \"Peter Johnsen\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/2?version=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"2"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Updates user. Parameter: 'version'"
+			},
+			"response": []
+		},
+		{
+			"name": "09_DeleteAnExistingUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"3"
+					]
+				},
+				"description": "Delete an existing user. A user can only be deleted if there are no user roles for that user."
+			},
+			"response": []
+		},
+		{
+			"name": "10_CreateUserRoleByUserIdAndUnitIdAndRoleId",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\" : 1,\n\t\"unitId\" : 2,\n\t\"roleId\" : 4, \n\t\"fromDateTime\" : \"2019-02-02T00:00:00\", \n\t\"toDate\" : \"2019-02-02\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/userRoles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"userRoles"
+					]
+				},
+				"description": "Creates a new user role, needs JSON paylod with 'userId' and 'unitId' and 'roleId' datetime to and from is optional"
+			},
+			"response": []
+		},
+		{
+			"name": "11_UpdateUserRole",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fromDateTime\" : \"2019-02-02T00:00:00\", \n\t\"toDate\" : \"2019-02-02\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/userRoles/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"userRoles",
+						"1"
+					]
+				},
+				"description": "Updates an user role, only dateTime to and from can be updated"
+			},
+			"response": []
+		},
+		{
+			"name": "12_DeleteAnExistingUserRole",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/userRoles/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"userRoles",
+						"5"
+					]
+				},
+				"description": "Delete an  user role"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a3e13bfd-e0ae-4adf-8ece-a5756ef91114",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "94909ac2-f421-436a-a30e-dfac75d486a9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
